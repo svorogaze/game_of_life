@@ -133,17 +133,12 @@ int main() {
                             }
                         }
                     }
-                    if (count_alive == 3 || (count_alive == 2 && board[i][j].is_alive)) {
-                        new_board[i][j].is_alive = true;
-                    }
-                    else {
-                        new_board[i][j].is_alive = false;
-                    }
+                    new_board[i][j].is_alive = (count_alive == 3 || (count_alive == 2 && board[i][j].is_alive));
                 }
             }
         }
 
-        board = new_board;
+        std::swap(board, new_board)
         for (int i = 0; i < board.size(); ++i) {
             for (int j = 0; j < board[i].size(); ++j) {
                 if (board[i][j].is_alive) {
@@ -156,7 +151,7 @@ int main() {
         }
         window.display();
         if (!paused) {
-        sf::sleep(sleep_time);
+            sf::sleep(sleep_time);
         }
     }
     return 0;
